@@ -1,6 +1,6 @@
 # Laravel mini 講義
 
-今日の目標：Laravel の基本的な考え方をし知る．
+今日の目標：Laravel の基本的な考え方を知る．
 
 ## 初学者が Laravel と仲良くなるポイント 3 選
 
