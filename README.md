@@ -150,10 +150,10 @@ destroy: データを削除 → indexにリダイレクト
 作成したビューファイルに HTML を記載する．記載する内容は以下のような感じ．
 
 ```txt
-tweet.index: データを一覧表示
-tweet.create: データを入力するフォームを表示
-tweet.show: データを詳細表示
-tweet.edit: データを編集するフォームを表示
+tweets.index: データを一覧表示
+tweets.create: データを入力するフォームを表示
+tweets.show: データを詳細表示
+tweets.edit: データを編集するフォームを表示
 
 layouts.navigation: ナビゲーションバーに一覧画面と新規作成画面へのリンクを表示
 ```
@@ -164,4 +164,4 @@ layouts.navigation: ナビゲーションバーに一覧画面と新規作成画
 
 ## まとめ
 
-慣れろ！！！やれ！！！
+表を見ろ！！！慣れろ！！！やれ！！！
