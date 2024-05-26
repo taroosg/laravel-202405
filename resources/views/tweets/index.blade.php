@@ -11,7 +11,7 @@
         <div class="p-6 text-gray-900 dark:text-gray-100">
           @foreach($tweets as $tweet)
           <a href="{{route('tweets.show', $tweet)}}">
-            <p>{{$tweet->tweet}}</p>
+            <p class="text-xl m-4">{{$tweet->tweet}}</p>
           </a>
           @endforeach
         </div>

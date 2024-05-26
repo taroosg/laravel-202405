@@ -9,9 +9,11 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100">
+          <p>今日の天気は{{$weather}}です</p>
           <p>{{$tweet->tweet}}</p>
           <p>{{$tweet->user->name}}</p>
           <p>{{$tweet->created_at}}</p>
+          <img src="{{$tweet->image_url}}" alt="">
           @if($tweet->user_id === auth()->id())
           <a href="{{route('tweets.edit', $tweet)}}">編集</a>
           <form action="{{route('tweets.destroy', $tweet)}}" method="POST">

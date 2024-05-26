@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UpdateTweetMail;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class TweetController extends Controller
 {
@@ -36,8 +39,18 @@ class TweetController extends Controller
       'tweet' => 'required|max:255',
     ]);
 
+    // APIから画像のURLを取得
+    $number = rand(1, 1000);
+    $response = Http::get("https://pokeapi.co/api/v2/pokemon/{$number}");
+    $pokemon = $response->json();
+    // dd($pokemon['sprites']['front_default']);
+
+    $record = $request->merge([
+      'image_url' => $pokemon['sprites']['front_default'],
+    ]);
+
     // データの保存
-    $request->user()->tweets()->create($request->only('tweet'));
+    $request->user()->tweets()->create($record->all());
 
     // indexのメソッドにリダイレクト
     return redirect()->route('tweets.index');
@@ -48,7 +61,9 @@ class TweetController extends Controller
    */
   public function show(Tweet $tweet)
   {
-    return view('tweets.show', compact('tweet'));
+    // 天気のAPIから情報を取得
+    $weather = '晴れ';
+    return view('tweets.show', compact('tweet', 'weather'));
   }
 
   /**
@@ -71,6 +86,14 @@ class TweetController extends Controller
 
     // 上書き
     $tweet->update($request->only('tweet'));
+
+    // メールを送信する処理
+    // ログインしているユーザの情報
+    $user = auth()->user();
+    // ログインしている人のメールアドレス
+    $mail = $user->email;
+    // メールサーバに送信を依頼する処理
+    Mail::to($mail)->send(new UpdateTweetMail($user, $tweet));
 
     // 一覧
     return redirect()->route('tweets.index');
