@@ -26,6 +26,16 @@
             {{ __('作成画面') }}
           </x-nav-link>
         </div>
+        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+          <x-nav-link :href="route('tweets.search')" :active="request()->routeIs('tweets.search')">
+            {{ __('検索画面') }}
+          </x-nav-link>
+        </div>
+        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+          <x-nav-link :href="route('tweets.mypage')" :active="request()->routeIs('tweets.mypage')">
+            {{ __('マイページ') }}
+          </x-nav-link>
+        </div>
       </div>
 
       <!-- Settings Dropdown -->
